@@ -1,99 +1,58 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { Component } from 'react';
+import { StyleSheet, Text, FlatList, View } from 'react-native';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+interface FeedItem {
+  id: number;
+  nome: string;
+  idade: number;
+  email: string;
 }
 
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+interface AppState {
+  feed: FeedItem[];
+}
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+class App extends Component<{}, AppState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      feed: [
+        { id: 1,nome: 'Wilson Gonçalves', idade: 53, email: 'wilssp@gmail.com' },
+        { id: 2,nome: 'Thiago Gonçalves', idade: 32, email: 'thiago@gmail.com' },
+        { id: 3,nome: 'Thais Gonçalves', idade: 26, email: 'thais@gmail.com' },
+        { id: 4,nome: 'Wesley Gonçalves', idade: 24, email: 'wesley@gmail.com' },
+        { id: 5,nome: 'Everton Gonçalves', idade: 17, email: 'everton@gmail.com' },
+      ],
+    };
+  }
+
+  renderItem = ({ item }: { item: FeedItem }) => {
+    return <Pessoa data={item} />;
   };
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+  render() {
+    return (
+      <View style={styles.sectionContainer}>
+        <FlatList
+          data={this.state.feed}
+          renderItem={this.renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
+    );
+  }
+}
+
+class Pessoa extends Component<{ data: FeedItem }> {
+  render() {
+    return (
+      <View style={styles.pessoaArea}>
+        <Text style={styles.pessoaText}>Nome:{this.props.data.nome}</Text>
+        <Text style={styles.pessoaText}>Idade{this.props.data.idade}</Text>
+        <Text style={styles.pessoaText}>E-mail{this.props.data.email}</Text>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -113,6 +72,19 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  pessoaText:
+  {
+    color: '#FFF',
+    fontSize: 20
+  },
+  
+  pessoaArea:
+  {
+    backgroundColor:'#222',
+    height: 200,
+    marginBottom: 15
+  }
 });
 
 export default App;
+
