@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import {PessoaProps} from './interface/pessoas';
+import {PessoaProps} from '../interface/pessoas';
 
 class Pessoas extends Component<PessoaProps> {
   render() {
