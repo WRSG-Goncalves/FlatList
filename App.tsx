@@ -10,7 +10,9 @@ class App extends Component {
       { id: 3, nome: 'Thiago', idade: 32, email: 'thiago@thiago.com' },
       { id: 4, nome: 'Thais', idade: 26, email: 'thais@thais.com' },
       { id: 5, nome: 'Wesley', idade: 24, email: 'wesley@wesley.com' },
-      { id: 6, nome: 'Everton', idade: 17, email: 'everton@everton' },
+      { id: 6, nome: 'Everton', idade: 17, email: 'everton@everton.com' },
+      { id: 7, nome: 'Jeferson', idade: 17, email: 'jeferson@everton.com' },
+      { id: 8, nome: 'Maria Alice', idade: 17, email: 'malice@alice.com' },
       
     ],
   };
