@@ -4,22 +4,21 @@ import Pessoas from './src/Pessoas';
 
 class App extends Component {
   state = {
-    lista: [
-      { id: 1, nome: 'Matheus', idade: 50, email: 'matheus@matheus.com' },
-      { id: 2, nome: 'Thiago', idade: 33, email: 'thiago@thiago.com' },
-      { id: 3, nome: 'Lucas', idade: 20, email: 'lucas@lucas.com' },
-      { id: 4, nome: 'Henrique', idade: 50, email: 'Henrique@Henrique.com' },
-      { id: 5, nome: 'Thiago', idade: 33, email: 'thiago@thiago.com' },
-      { id: 6, nome: 'Lucas', idade: 20, email: 'lucas@lucas.com' },
-      { id: 7, nome: 'JOSE', idade: 33, email: 'thiago@thiago.com' },
-      { id: 8, nome: 'HENRIQUE', idade: 20, email: 'lucas@lucas.com' },
+    pessoas: [
+      { id: 1, nome: 'Wilson', idade: 53, email: 'wilssp@gmai.com.com' },
+      { id: 2, nome: 'Andrea', idade: 52, email: 'andrea@andrea.com' },
+      { id: 3, nome: 'Thiago', idade: 32, email: 'thiago@thiago.com' },
+      { id: 4, nome: 'Thais', idade: 26, email: 'thais@thais.com' },
+      { id: 5, nome: 'Wesley', idade: 24, email: 'wesley@wesley.com' },
+      { id: 6, nome: 'Everton', idade: 17, email: 'everton@everton' },
+      
     ],
   };
   render() {
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.state.lista}
+          data={this.state.pessoas}
           keyExtractor={(item) => item.id.toString()} 
           renderItem={({ item }) => <Pessoas pessoa={item} />} 
         />
